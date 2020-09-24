@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  db:
+    image: mariadb:latest
+    container_name: ${CONTAINER_NAME}
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+    # command:
+    #   - --character-set-server=utf8mb4
+    #   - --collation-server=utf8mb4_unicode_ci
+    ports:
+      - '${DB_PORT}:3306'
+
+  # networks:
+  #   default:
+  #     name: ${NETWORK_NAME}

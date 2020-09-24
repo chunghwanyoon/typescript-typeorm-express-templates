@@ -22,7 +22,6 @@ class App {
     this.initializeMiddlewares();
     this.initializeRoutes(routes);
     this.initializeErrorHandling();
-    this.initializeDatabases();
   }
 
   public listen() {
@@ -52,21 +51,13 @@ class App {
 
   private initializeRoutes(routes: Routes[]) {
     routes.forEach((route) => {
-      this.app.use('/', route.router);
+      this.app.use('/api', route.router);
     });
   }
 
   private initializeErrorHandling() {
     this.app.use(errorMiddleware);
-  }
-
-  private async initializeDatabases() {
-    await createConnection(databaseConfig)
-      .then(() => {
-        console.log(`Environment: ${this.env}, Database Connected`);
-      })
-      .catch((err) => console.log(err));
-  }
+  } 
 }
 
 export default App;
